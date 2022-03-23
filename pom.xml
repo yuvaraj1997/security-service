@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>security-service</name>
     <description>Security Service</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -59,6 +60,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
