@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.services;
+package com.yuvaraj.security.services;
 
 import java.io.IOException;
 import java.util.Map;

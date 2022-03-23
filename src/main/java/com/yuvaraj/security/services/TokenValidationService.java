@@ -1,6 +1,6 @@
-package com.yuvaraj.securityservice.services;
+package com.yuvaraj.security.services;
 
-import com.yuvaraj.securityservice.models.DefaultToken;
+import com.yuvaraj.security.models.DefaultToken;
 
 import java.util.List;
 

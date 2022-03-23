@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.services.cipher;
+package com.yuvaraj.security.services.cipher;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;

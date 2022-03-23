@@ -1,7 +1,6 @@
-package com.yuvaraj.securityservice.helpers;
+package com.yuvaraj.security.helpers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yuvaraj.securityservice.models.DefaultToken;
 
 public class JsonHelper {
 

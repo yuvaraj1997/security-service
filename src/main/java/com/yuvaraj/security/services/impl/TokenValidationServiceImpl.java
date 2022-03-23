@@ -1,13 +1,16 @@
-package com.yuvaraj.securityservice.services.impl;
+package com.yuvaraj.security.services.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Preconditions;
-import com.yuvaraj.securityservice.helpers.*;
-import com.yuvaraj.securityservice.models.DefaultToken;
-import com.yuvaraj.securityservice.services.TokenValidationService;
-import com.yuvaraj.securityservice.services.cipher.symmetric.SymmetricKeyAESCipher;
+import com.yuvaraj.security.helpers.JsonHelper;
+import com.yuvaraj.security.helpers.RefreshVerifier;
+import com.yuvaraj.security.helpers.SessionVerifier;
+import com.yuvaraj.security.helpers.TokenType;
+import com.yuvaraj.security.models.DefaultToken;
+import com.yuvaraj.security.providers.SimpleSymmetricCipherProvider;
+import com.yuvaraj.security.services.TokenValidationService;
+import com.yuvaraj.security.services.cipher.symmetric.SimpleSymmetricCipher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -21,19 +24,15 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import static com.yuvaraj.securityservice.helpers.Constants.EnvironmentVariables.INIT_VECTOR_KEY;
-import static com.yuvaraj.securityservice.helpers.Constants.EnvironmentVariables.SYMMETRIC_SECRET_KEY;
-
 @Service
 public class TokenValidationServiceImpl implements TokenValidationService {
 
-    private final String symmetricSecretKey;
-    private final String initVectorKey;
     Logger logger = LoggerFactory.getLogger(getClass());
 
+    private final SimpleSymmetricCipher simpleSymmetricCipher;
+
     public TokenValidationServiceImpl() {
-        this.symmetricSecretKey = Preconditions.checkNotNull(Constants.getEnvOrProperty(SYMMETRIC_SECRET_KEY), SYMMETRIC_SECRET_KEY + " need to be configured");
-        this.initVectorKey = Preconditions.checkNotNull(Constants.getEnvOrProperty(INIT_VECTOR_KEY), INIT_VECTOR_KEY + " need to be configured");
+        this.simpleSymmetricCipher = new SimpleSymmetricCipherProvider().get();
     }
 
     @Override
@@ -73,10 +72,7 @@ public class TokenValidationServiceImpl implements TokenValidationService {
 
     private String decrypt(String encryptedToken) throws JsonProcessingException, BadPaddingException, NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException {
         try {
-            SymmetricKeyAESCipher symmetricKeyAESCipher = new SymmetricKeyAESCipher();
-            symmetricKeyAESCipher.setKey(this.symmetricSecretKey);
-            symmetricKeyAESCipher.setInitVector(this.initVectorKey);
-            return symmetricKeyAESCipher.decrypt(encryptedToken);
+            return simpleSymmetricCipher.decrypt(encryptedToken);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | UnsupportedEncodingException | InvalidAlgorithmParameterException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
             e.printStackTrace();
             throw e;

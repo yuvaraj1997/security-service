@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.models;
+package com.yuvaraj.security.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

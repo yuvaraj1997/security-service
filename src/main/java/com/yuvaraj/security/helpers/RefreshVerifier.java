@@ -1,8 +1,8 @@
-package com.yuvaraj.securityservice.helpers;
+package com.yuvaraj.security.helpers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yuvaraj.securityservice.models.token.RefreshToken;
+import com.yuvaraj.security.models.token.RefreshToken;
 
 public class RefreshVerifier {
 

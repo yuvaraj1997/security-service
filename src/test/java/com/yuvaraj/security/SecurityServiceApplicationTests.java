@@ -1,12 +1,11 @@
-package com.yuvaraj.securityservice;
+package com.yuvaraj.security;
 
-import com.yuvaraj.securityservice.helpers.TokenType;
-import com.yuvaraj.securityservice.models.DefaultToken;
-import com.yuvaraj.securityservice.services.impl.JwtGenerationServiceImpl;
-import com.yuvaraj.securityservice.services.impl.JwtManagerServiceImpl;
-import com.yuvaraj.securityservice.services.impl.TokenValidationServiceImpl;
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
+import com.yuvaraj.security.helpers.TokenType;
+import com.yuvaraj.security.models.DefaultToken;
+import com.yuvaraj.security.services.cipher.symmetric.SymmetricKeyAESCipher;
+import com.yuvaraj.security.services.impl.JwtGenerationServiceImpl;
+import com.yuvaraj.security.services.impl.JwtManagerServiceImpl;
+import com.yuvaraj.security.services.impl.TokenValidationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
-import static com.yuvaraj.securityservice.helpers.Constants.EnvironmentVariables.*;
+import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @RunWith(SpringRunner.class)

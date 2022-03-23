@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.helpers;
+package com.yuvaraj.security.helpers;
 
 public enum TokenType {
 

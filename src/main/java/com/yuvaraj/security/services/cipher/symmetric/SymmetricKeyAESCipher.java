@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.services.cipher.symmetric;
+package com.yuvaraj.security.services.cipher.symmetric;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

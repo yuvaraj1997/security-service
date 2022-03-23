@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.services;
+package com.yuvaraj.security.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 

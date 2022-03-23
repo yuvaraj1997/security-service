@@ -1,10 +1,9 @@
-package com.yuvaraj.securityservice;
+package com.yuvaraj.security;
 
-import com.yuvaraj.securityservice.helpers.TokenType;
-import com.yuvaraj.securityservice.services.JwtGenerationService;
-import com.yuvaraj.securityservice.services.JwtManagerService;
-import com.yuvaraj.securityservice.services.impl.JwtGenerationServiceImpl;
-import com.yuvaraj.securityservice.services.impl.JwtManagerServiceImpl;
+import com.yuvaraj.security.helpers.TokenType;
+import com.yuvaraj.security.services.JwtGenerationService;
+import com.yuvaraj.security.services.impl.JwtGenerationServiceImpl;
+import com.yuvaraj.security.services.impl.JwtManagerServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

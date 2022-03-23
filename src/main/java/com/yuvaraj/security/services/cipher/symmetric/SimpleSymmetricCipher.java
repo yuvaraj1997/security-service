@@ -1,6 +1,6 @@
-package com.yuvaraj.securityservice.services.cipher.symmetric;
+package com.yuvaraj.security.services.cipher.symmetric;
 
-import com.yuvaraj.securityservice.services.cipher.SimpleCipher;
+import com.yuvaraj.security.services.cipher.SimpleCipher;
 
 public interface SimpleSymmetricCipher extends SimpleCipher {
 

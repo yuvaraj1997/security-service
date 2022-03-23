@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.services.impl;
+package com.yuvaraj.security.services.impl;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -6,8 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
-import com.yuvaraj.securityservice.helpers.Constants;
-import com.yuvaraj.securityservice.services.JwtManagerService;
+import com.yuvaraj.security.helpers.Constants;
+import com.yuvaraj.security.services.JwtManagerService;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,9 +16,9 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 import java.util.Map;
 
-import static com.yuvaraj.securityservice.helpers.Constants.EnvironmentVariables.*;
-import static com.yuvaraj.securityservice.helpers.KeyHelper.getPrivateKey;
-import static com.yuvaraj.securityservice.helpers.KeyHelper.getPublicKey;
+import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.*;
+import static com.yuvaraj.security.helpers.KeyHelper.getPrivateKey;
+import static com.yuvaraj.security.helpers.KeyHelper.getPublicKey;
 
 @Service
 public class JwtManagerServiceImpl implements JwtManagerService {

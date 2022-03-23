@@ -1,15 +1,15 @@
-package com.yuvaraj.securityservice.services.impl;
+package com.yuvaraj.security.services.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
-import com.yuvaraj.securityservice.helpers.Constants;
-import com.yuvaraj.securityservice.models.DefaultToken;
-import com.yuvaraj.securityservice.models.token.RefreshToken;
-import com.yuvaraj.securityservice.models.token.SessionToken;
-import com.yuvaraj.securityservice.services.JwtGenerationService;
-import com.yuvaraj.securityservice.services.JwtManagerService;
-import com.yuvaraj.securityservice.services.cipher.symmetric.SymmetricKeyAESCipher;
+import com.yuvaraj.security.helpers.Constants;
+import com.yuvaraj.security.models.DefaultToken;
+import com.yuvaraj.security.models.token.RefreshToken;
+import com.yuvaraj.security.models.token.SessionToken;
+import com.yuvaraj.security.services.JwtGenerationService;
+import com.yuvaraj.security.services.JwtManagerService;
+import com.yuvaraj.security.services.cipher.symmetric.SymmetricKeyAESCipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
-import static com.yuvaraj.securityservice.helpers.Constants.EnvironmentVariables.*;
+import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.*;
 
 @Service
 public class JwtGenerationServiceImpl implements JwtGenerationService {

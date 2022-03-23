@@ -1,6 +1,4 @@
-package com.yuvaraj.securityservice.helpers;
-
-import static com.yuvaraj.securityservice.helpers.Constants.EnvironmentVariables.SYMMETRIC_SECRET_KEY;
+package com.yuvaraj.security.helpers;
 
 public class Constants {
 

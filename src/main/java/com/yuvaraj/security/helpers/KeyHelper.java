@@ -1,4 +1,4 @@
-package com.yuvaraj.securityservice.helpers;
+package com.yuvaraj.security.helpers;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;

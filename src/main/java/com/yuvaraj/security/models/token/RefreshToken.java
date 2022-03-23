@@ -1,9 +1,9 @@
-package com.yuvaraj.securityservice.models.token;
+package com.yuvaraj.security.models.token;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.yuvaraj.securityservice.helpers.TokenType;
-import com.yuvaraj.securityservice.models.DefaultToken;
+import com.yuvaraj.security.helpers.TokenType;
+import com.yuvaraj.security.models.DefaultToken;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
