@@ -1,8 +1,8 @@
 package com.yuvaraj.security;
 
 import com.yuvaraj.security.helpers.TokenType;
+import com.yuvaraj.security.models.AuthSuccessfulResponse;
 import com.yuvaraj.security.models.DefaultToken;
-import com.yuvaraj.security.services.cipher.symmetric.SymmetricKeyAESCipher;
 import com.yuvaraj.security.services.impl.JwtGenerationServiceImpl;
 import com.yuvaraj.security.services.impl.JwtManagerServiceImpl;
 import com.yuvaraj.security.services.impl.TokenValidationServiceImpl;
@@ -16,7 +16,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.*;
-import static org.junit.jupiter.api.Assertions.fail;
 
 @RunWith(SpringRunner.class)
 class SecurityServiceApplicationTests {
@@ -40,15 +39,15 @@ class SecurityServiceApplicationTests {
 
     @Test
     void testGenerateKycToken() throws Exception {
-        String refreshToken = jwtGenerationService.generateRefreshToken("test");
-        DefaultToken defaultToken = (DefaultToken) jwtManagerService.extractJwtPayload(refreshToken, DefaultToken.class);
+        AuthSuccessfulResponse authSuccessfulResponse = jwtGenerationService.generateRefreshToken("test");
+        DefaultToken defaultToken = (DefaultToken) jwtManagerService.extractJwtPayload(authSuccessfulResponse.getToken(), DefaultToken.class);
         tokenValidationService.verifyToken(defaultToken, Arrays.asList(TokenType.REFRESH.getType()));
     }
 
     @Test
     void testGenerateSessionToken() throws Exception {
-        String sessionToken = jwtGenerationService.generateSessionToken("test");
-        DefaultToken defaultToken = (DefaultToken) jwtManagerService.extractJwtPayload(sessionToken, DefaultToken.class);
+        AuthSuccessfulResponse authSuccessfulResponse = jwtGenerationService.generateSessionToken("test");
+        DefaultToken defaultToken = (DefaultToken) jwtManagerService.extractJwtPayload(authSuccessfulResponse.getToken(), DefaultToken.class);
         tokenValidationService.verifyToken(defaultToken, Arrays.asList(TokenType.SESSION.getType()));
     }
 }

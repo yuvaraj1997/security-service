@@ -16,7 +16,8 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 import java.util.Map;
 
-import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.*;
+import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.ASYMMETRIC_PRIVATE_KEY;
+import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.ASYMMETRIC_PUBLIC_KEY;
 import static com.yuvaraj.security.helpers.KeyHelper.getPrivateKey;
 import static com.yuvaraj.security.helpers.KeyHelper.getPublicKey;
 

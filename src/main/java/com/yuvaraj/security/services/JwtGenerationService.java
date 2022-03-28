@@ -1,6 +1,7 @@
 package com.yuvaraj.security.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.yuvaraj.security.models.AuthSuccessfulResponse;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -12,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 
 public interface JwtGenerationService {
 
-    String generateRefreshToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException;
+    AuthSuccessfulResponse generateRefreshToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException;
 
-    String generateSessionToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException;
+    AuthSuccessfulResponse generateSessionToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException;
 }

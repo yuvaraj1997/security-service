@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
 import com.yuvaraj.security.helpers.Constants;
+import com.yuvaraj.security.models.AuthSuccessfulResponse;
 import com.yuvaraj.security.models.DefaultToken;
 import com.yuvaraj.security.models.token.RefreshToken;
 import com.yuvaraj.security.models.token.SessionToken;
@@ -23,6 +24,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import static com.yuvaraj.security.helpers.Constants.EnvironmentVariables.*;
+import static com.yuvaraj.security.helpers.DateHelper.convertDateForEndResult;
+import static com.yuvaraj.security.helpers.DateHelper.convertTimeStampToDate;
 
 @Service
 public class JwtGenerationServiceImpl implements JwtGenerationService {
@@ -43,17 +46,21 @@ public class JwtGenerationServiceImpl implements JwtGenerationService {
     }
 
     @Override
-    public String generateRefreshToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    public AuthSuccessfulResponse generateRefreshToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Preconditions.checkArgument(null != customerId && !customerId.isEmpty(), "customerId cannot be null");
         DefaultToken defaultToken = new DefaultToken(convertToJsonAndEncrypt(new RefreshToken(customerId)), this.refreshTokenExpiryInMs == -1 ? this.refreshTokenExpiryInMs : this.refreshTokenExpiryInMs * 1000);
-        return jwtManagerService.generateJwtToken(new ObjectMapper().convertValue(defaultToken, Map.class));
+        return buildAuthSuccessfulResponse(jwtManagerService.generateJwtToken(new ObjectMapper().convertValue(defaultToken, Map.class)), defaultToken.getCreateTime(), defaultToken.getExpiryInMs(), customerId);
+    }
+
+    private AuthSuccessfulResponse buildAuthSuccessfulResponse(String token, long createTime, long expiryInMs, String customerId) {
+        return new AuthSuccessfulResponse(customerId, token, createTime, expiryInMs, convertDateForEndResult(convertTimeStampToDate(createTime)));
     }
 
     @Override
-    public String generateSessionToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    public AuthSuccessfulResponse generateSessionToken(String customerId) throws JsonProcessingException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Preconditions.checkArgument(null != customerId && !customerId.isEmpty(), "customerId cannot be null");
         DefaultToken defaultToken = new DefaultToken(convertToJsonAndEncrypt(new SessionToken(customerId)), this.sessionTokenExpiryInMs == -1 ? this.sessionTokenExpiryInMs : this.sessionTokenExpiryInMs * 1000);
-        return jwtManagerService.generateJwtToken(new ObjectMapper().convertValue(defaultToken, Map.class));
+        return buildAuthSuccessfulResponse(jwtManagerService.generateJwtToken(new ObjectMapper().convertValue(defaultToken, Map.class)), defaultToken.getCreateTime(), defaultToken.getExpiryInMs(), customerId);
     }
 
     private String convertToJsonAndEncrypt(Object object) throws JsonProcessingException, BadPaddingException, NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException {

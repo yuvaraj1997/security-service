@@ -27,9 +27,8 @@ import java.util.List;
 @Service
 public class TokenValidationServiceImpl implements TokenValidationService {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-
     private final SimpleSymmetricCipher simpleSymmetricCipher;
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     public TokenValidationServiceImpl() {
         this.simpleSymmetricCipher = new SimpleSymmetricCipherProvider().get();

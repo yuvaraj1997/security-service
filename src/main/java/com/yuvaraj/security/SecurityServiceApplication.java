@@ -18,14 +18,11 @@ import java.util.Map;
 @SpringBootApplication
 public class SecurityServiceApplication implements CommandLineRunner {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-
-
-    JwtGenerationService jwtGenerationService;
-
     private final String TOKEN_TYPE = "TOKEN_TYPE";
     private final String ENV = "ENV";
     private final String DEV = "DEV";
+    Logger logger = LoggerFactory.getLogger(getClass());
+    JwtGenerationService jwtGenerationService;
 
     public SecurityServiceApplication() throws NoSuchAlgorithmException, InvalidKeySpecException {
         this.jwtGenerationService = new JwtGenerationServiceImpl(new JwtManagerServiceImpl());
@@ -38,7 +35,7 @@ public class SecurityServiceApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Map<String, String> config = checkArgs(args);
-        switch(TokenType.valueOf(config.get(TOKEN_TYPE))){
+        switch (TokenType.valueOf(config.get(TOKEN_TYPE))) {
             case REFRESH:
                 logger.info("{}", jwtGenerationService.generateRefreshToken(config.get("customerId")));
                 break;
@@ -52,18 +49,18 @@ public class SecurityServiceApplication implements CommandLineRunner {
     }
 
     private Map<String, String> checkArgs(String[] args) throws Exception {
-        if(null == args || args.length < 2){
+        if (null == args || args.length < 2) {
             throw new Exception("Args cannot be null or empty or not sufficient");
         }
         Map<String, String> configs = new HashMap<>();
-        try{
+        try {
             configs.put(TOKEN_TYPE, TokenType.valueOf(args[0].toUpperCase()).getType());
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("Invalid Token type");
         }
         configs.put("customerId", args[1]);
         configs.put(ENV, DEV);
-        if(args.length > 2){
+        if (args.length > 2) {
             configs.put(ENV, args[2].toUpperCase());
         }
         return configs;

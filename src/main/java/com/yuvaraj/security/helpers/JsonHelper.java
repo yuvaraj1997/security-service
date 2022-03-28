@@ -8,9 +8,9 @@ public class JsonHelper {
 
 
     public static Object toJson(Object object) {
-        try{
+        try {
             return objectMapper.valueToTree(object);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }

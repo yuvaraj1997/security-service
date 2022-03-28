@@ -4,13 +4,13 @@ public class Constants {
 
     public static String getEnvOrProperty(String identifier) {
         String value = System.getProperty(identifier);
-        if(null == value){
+        if (null == value) {
             value = System.getenv(identifier);
         }
         return value;
     }
 
-    public static class EnvironmentVariables{
+    public static class EnvironmentVariables {
 
         public static final String SYMMETRIC_SECRET_KEY = "SYMMETRIC_SECRET_KEY";
         public static final String INIT_VECTOR_KEY = "INIT_VECTOR_KEY";
